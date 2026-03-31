@@ -3,105 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Boda: Zaira & Javier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Crimson+Pro:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Boda de Javier & Zaira</title>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Crimson+Pro:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-boda-cream text-boda-emerald font-body leading-relaxed">
+<body class="bg-stone-50 text-stone-800 font-['Montserrat']">
 
-    <header class="h-[90vh] flex flex-col items-center justify-center text-center px-4 bg-cover bg-center relative" style="background-image: url('/public/images/hero_boda.jpg');">
-        <div class="absolute inset-0 bg-boda-emerald/40"></div>
+    <header class="h-screen flex flex-col items-center justify-center text-center px-4 bg-cover bg-center relative" style="background-image: url('/images/hero_boda.jpg');">
+        <div class="absolute inset-0 bg-black/30"></div>
         
-        <div class="relative z-10 text-boda-cream p-10 border border-boda-cream/30 rounded-full bg-boda-emerald/30 backdrop-blur-sm">
-            <h2 class="uppercase tracking-[0.4em] text-xs mb-6 font-bold">¡Nos casamos!</h2>
-            <h1 class="font-script text-7xl md:text-9xl mb-8 text-boda-gold">Zaira & Javier</h1>
-            <p class="text-2xl font-light italic">25 de julio, 2026</p>
-        </div>
-        
-        <div class="absolute bottom-10 z-10 text-boda-cream animate-bounce">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
+        <div class="relative z-10 text-white">
+            <h2 class="uppercase tracking-[0.3em] text-sm mb-4">¡Nos casamos!</h2>
+            <h1 class="font-['Playfair_Display'] text-6xl md:text-8xl mb-6">Javier & Zaira</h1>
+            <p class="text-xl italic">25 de julio, 2026</p>
         </div>
     </header>
 
-    <section class="py-32 bg-white text-center border-t border-boda-gold/10">
-        <p class="text-boda-gold text-2xl font-light italic mb-12 max-w-2xl mx-auto px-4">
-            "En un abrir y cerrar de ojos, la vida nos unió para siempre. <br>¡Acompáñanos a celebrar el inicio de nuestra historia!"
-        </p>
-        <h3 class="font-script text-5xl mb-12 text-boda-emerald">Comienza la cuenta regresiva...</h3>
-        <div id="countdown" class="flex justify-center gap-6 text-boda-emerald">
-            <div class="flex flex-col border border-boda-emerald/10 p-6 rounded-lg bg-boda-cream/30"><span id="days" class="text-5xl font-bold">00</span><span class="text-xs uppercase tracking-widest mt-1">Días</span></div>
-            <div class="flex flex-col border border-boda-emerald/10 p-6 rounded-lg bg-boda-cream/30"><span id="hours" class="text-5xl font-bold">00</span><span class="text-xs uppercase tracking-widest mt-1">Hrs</span></div>
-            <div class="flex flex-col border border-boda-emerald/10 p-6 rounded-lg bg-boda-cream/30"><span id="minutes" class="text-5xl font-bold">00</span><span class="text-xs uppercase tracking-widest mt-1">Min</span></div>
-            <div class="flex flex-col border border-boda-emerald/10 p-6 rounded-lg bg-boda-cream/30"><span id="seconds" class="text-5xl font-bold text-boda-gold">00</span><span class="text-xs uppercase tracking-widest mt-1 text-boda-gold">Seg</span></div>
-        </div>
-    </section>
+    <section class="py-20 bg-white text-center">
+    <h3 class="font-['Playfair_Display'] text-3xl mb-8">Faltan solo...</h3>
+    <div id="countdown" class="flex justify-center gap-4 text-stone-600">
+        <div class="flex flex-col"><span id="days" class="text-4xl font-bold">00</span><span>Días</span></div>
+        <div class="flex flex-col"><span id="hours" class="text-4xl font-bold">00</span><span>Hrs</span></div>
+        <div class="flex flex-col"><span id="minutes" class="text-4xl font-bold">00</span><span>Min</span></div>
+        <div class="flex flex-col"><span id="seconds" class="text-4xl font-bold">00</span><span>Seg</span></div>
+    </div>
+</section>
 
-    <section class="py-32 bg-boda-emerald text-boda-cream px-4">
-        <h3 class="font-script text-6xl text-center mb-20 text-boda-gold">Detalles de Nuestra Celebración</h3>
-        
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
-            <div class="border border-boda-cream/20 p-10 rounded-2xl flex flex-col justify-between bg-black/10 hover:border-boda-gold/50 transition-all duration-300">
-                <div class="text-center">
-                    <h4 class="text-xs uppercase tracking-[0.3em] font-bold mb-6 text-boda-gold">La Ceremonia</h4>
-                    <p class="font-bold text-2xl mb-3 text-boda-cream">Parroquia de María Auxiliadora</p>
-                    <p class="mb-4 text-sm text-boda-cream/70">Colegio Salesiano #61, Anáhuac I Secc, CDMX</p>
-                    <p class="text-lg font-light italic mb-10 text-boda-gold">16:00 hrs.</p>
-                </div>
-                <a href="URL_GOOGLE_MAPS_CEREMONIA" target="_blank" rel="noopener noreferrer" class="bg-boda-gold text-boda-emerald px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-boda-cream transition inline-block text-center">
-                    Ver ubicación
-                </a>
+<section class="py-20 px-4 max-w-4xl mx-auto grid md:grid-cols-2 gap-12 text-center">
+        <div class="border-2 border-stone-200 p-8 rounded-lg flex flex-col justify-between">
+            <div>
+                <h3 class="font-['Playfair_Display'] text-2xl mb-4 uppercase">Ceremonia</h3>
+                <p class="font-bold text-lg mb-2 text-stone-800">Parroquia de María Auxiliadora</p>
+                <p class="mb-8 text-sm text-stone-600">Colegio Salesiano #61, Anáhuac I Secc, Miguel Hidalgo, 11320 Ciudad de México, CDMX</p>
             </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+María+Auxiliadora+Colegio+Salesiano+61+Miguel+Hidalgo+CDMX" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white px-6 py-3 rounded font-bold uppercase tracking-wide hover:bg-stone-700 transition inline-block">
+                Ver ubicación
+            </a>
+        </div>
 
-            <div class="border border-boda-cream/20 p-10 rounded-2xl flex flex-col justify-between bg-black/10 hover:border-boda-gold/50 transition-all duration-300">
-                <div class="text-center">
-                    <h4 class="text-xs uppercase tracking-[0.3em] font-bold mb-6 text-boda-gold">La Recepción</h4>
-                    <p class="font-bold text-2xl mb-3 text-boda-cream">Jardín Hacienda Tezontle 2</p>
-                    <p class="mb-4 text-sm text-boda-cream/70">C. Escobillera 20, CEDA, Iztapalapa, CDMX</p>
-                    <p class="text-lg font-light italic mb-10 text-boda-gold">19:00 hrs.</p>
-                </div>
-                <a href="URL_GOOGLE_MAPS_RECEPCION" target="_blank" rel="noopener noreferrer" class="bg-boda-cream text-boda-emerald px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-boda-gold transition inline-block text-center">
-                    Cómo llegar
-                </a>
+        <div class="border-2 border-stone-200 p-8 rounded-lg flex flex-col justify-between">
+            <div>
+                <h3 class="font-['Playfair_Display'] text-2xl mb-4 uppercase">Recepción</h3>
+                <p class="font-bold text-lg mb-2 text-stone-800">Jardín Hacienda Tezontle 2</p>
+                <p class="mb-8 text-sm text-stone-600">C. Escobillera 20, CEDA, Iztapalapa, 09040 Ciudad de México, CDMX</p>
             </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Jardin+Hacienda+Tezontle+2+Escobillera+20+Iztapalapa+CDMX" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white px-6 py-3 rounded font-bold uppercase tracking-wide hover:bg-stone-700 transition inline-block">
+                Cómo llegar
+            </a>
+        </div>
+    </section> 
+
+
+    <section class="py-20 bg-white px-4">
+        <h3 class="font-['Playfair_Display'] text-3xl text-center mb-12">Nuestra Historia en Imágenes</h3>
+        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+            <img src="/images/boda_1.jpg" alt="Zaira & Javier 1" class="rounded-lg shadow-md aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
+            <img src="/images/boda_2.jpg" alt="Zaira & Javier 2" class="rounded-lg shadow-md aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
+            <img src="/images/boda_3.jpg" alt="Zaira & Javier 3" class="rounded-lg shadow-md aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
+            <img src="/images/boda_4.jpg" alt="Zaira & Javier 4" class="rounded-lg shadow-md aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
+            <img src="/images/boda_5.jpg" alt="Zaira & Javier 5" class="rounded-lg shadow-md aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
+            <img src="/images/boda_6.jpg" alt="Zaira & Javier 6" class="rounded-lg shadow-md aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
         </div>
     </section>
 
-    <section class="py-32 bg-white px-4 border-b border-boda-gold/10">
-        <h3 class="font-script text-6xl text-center mb-20 text-boda-emerald">Nuestra Historia en Imágenes</h3>
-        
-        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
-            <img src="/public/images/boda_1.jpg" alt="Zaira & Javier 1" class="rounded-lg shadow-lg aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
-            <img src="/public/images/boda_2.jpg" alt="Zaira & Javier 2" class="rounded-lg shadow-lg aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
-            <img src="/public/images/boda_3.jpg" alt="Zaira & Javier 3" class="rounded-lg shadow-lg aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
-            <img src="/public/images/boda_4.jpg" alt="Zaira & Javier 4" class="rounded-lg shadow-lg aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
-            <img src="/public/images/boda_5.jpg" alt="Zaira & Javier 5" class="rounded-lg shadow-lg aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
-            <img src="/public/images/boda_6.jpg" alt="Zaira & Javier 6" class="rounded-lg shadow-lg aspect-[3/4] object-cover hover:scale-105 transition-transform duration-300">
-        </div>
-    </section>
-
-    <section class="py-32 bg-boda-cream px-4">
-        <div class="max-w-lg mx-auto bg-white p-12 shadow-2xl rounded-3xl border border-boda-gold/10 text-center">
-            <h3 class="font-script text-6xl mb-6 text-boda-emerald">Confirmación de asistencia</h3>
-            <p class="text-xs uppercase tracking-[0.3em] font-bold mb-10 text-boda-gold">Zaira & Javier</p>
-            
-            <form id="rsvpForm" class="space-y-6 text-left">
-                <input type="text" placeholder="Tu nombre completo" class="w-full border border-boda-emerald/10 p-4 rounded-lg bg-boda-cream/30" required>
-                <select class="w-full border border-boda-emerald/10 p-4 rounded-lg bg-boda-cream/30 text-boda-emerald/70">
+    <section class="py-20 bg-stone-100 px-4">
+        <div class="max-w-md mx-auto bg-white p-8 shadow-lg rounded-xl">
+            <h3 class="font-['Playfair_Display'] text-3xl text-center mb-8">Confirma tu asistencia</h3>
+            <form id="rsvpForm" class="space-y-4">
+                <input type="text" placeholder="Tu nombre completo" class="w-full border p-3 rounded" required>
+                <select class="w-full border p-3 rounded">
                     <option>¿Asistirás?</option>
                     <option value="si">¡Claro que sí!</option>
                     <option value="no">Lamentablemente no</option>
                 </select>
-                <button type="submit" class="w-full bg-boda-emerald text-boda-cream py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:bg-boda-gold transition-colors duration-300">
-                    Enviar Confirmación
-                </button>
+                <button type="submit" class="w-full bg-stone-800 text-white py-3 rounded font-bold uppercase tracking-widest hover:bg-stone-700 transition">Enviar Confirmación</button>
             </form>
         </div>
     </section>
 
-    <footer class="py-16 text-center text-xs text-boda-emerald/50">
-        Hecho con ❤️ por Javier para Zaira<br>
-        Boda 25 de julio, 2026
+    <footer class="py-10 text-center text-sm text-stone-400">
+        Hecho con ❤️ por Javier para Zaira
     </footer>
 
     <script type="module" src="/src/main.js"></script>
