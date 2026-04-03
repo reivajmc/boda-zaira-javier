@@ -94,13 +94,14 @@
             <h3 class="font-['Pinyon_Script'] text-3xl text-center mb-4">Confirma tu asistencia</h3>
             <p class="text-center text-lg mb-8 font-['Crimson_Pro']">Nos encantaría que nos acompañes en este día tan especial. Por favor, confirma tu asistencia antes del 1 de julio.</p>
             <form id="rsvpForm" class="space-y-4">
-                <input type="text" placeholder="Tu nombre completo" class="w-full border p-3 rounded" required>
-                <select class="w-full border p-3 rounded">
-                    <option>¿Asistirás?</option>
+                <input type="text" name="nombre" placeholder="Tu nombre completo" class="w-full border p-3 rounded" required>
+                <select name="asistencia" class="w-full border p-3 rounded" required>
+                    <option value="" disabled selected>¿Asistirás?</option>
                     <option value="si">¡Claro que sí!</option>
                     <option value="no">Lamentablemente no</option>
                 </select>
-                <button type="submit" class="w-full bg-stone-800 text-white py-3 rounded font-bold uppercase tracking-widest hover:bg-stone-700 transition">Enviar Confirmación</button>
+                <button type="submit" id="submitBtn" class="w-full bg-stone-800 text-white py-3 rounded font-bold uppercase tracking-widest hover:bg-stone-700 transition disabled:opacity-50">Enviar Confirmación</button>
+                <p id="formStatus" class="text-center mt-4 hidden text-sm"></p>
             </form>
         </div>
     </section>

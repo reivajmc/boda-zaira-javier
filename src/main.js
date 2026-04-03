@@ -31,3 +31,39 @@ const updateCountdown = () => {
 const timerInterval = setInterval(updateCountdown, 1000);
 
 updateCountdown();
+
+// --- Lógica del Formulario RSVP (Google Sheets) ---
+// TODO: ¡Reemplaza esta URL con la que obtengas de Google Apps Script!
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzd9zNRglNBm_eubDmhU2xsJRp650m3FSc4H89TFrXig5ELsL7E3BKDSiMrAV_-zCD2Ww/exec'; 
+const form = document.getElementById('rsvpForm');
+const btn = document.getElementById('submitBtn');
+const status = document.getElementById('formStatus');
+
+if (form) {
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Cambiar estado del botón mientras envía
+        btn.disabled = true;
+        btn.innerText = 'Enviando...';
+        status.classList.add('hidden');
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                status.innerText = "¡Gracias! Tu confirmación ha sido enviada.";
+                status.classList.remove('hidden', 'text-red-600');
+                status.classList.add('text-green-600', 'font-bold');
+                form.reset();
+                btn.disabled = false;
+                btn.innerText = 'Enviar Confirmación';
+            })
+            .catch(error => {
+                status.innerText = "Hubo un error al enviar. Por favor intenta de nuevo.";
+                status.classList.remove('hidden', 'text-green-600');
+                status.classList.add('text-red-600', 'font-bold');
+                console.error('Error!', error.message);
+                btn.disabled = false;
+                btn.innerText = 'Enviar Confirmación';
+            });
+    });
+}
