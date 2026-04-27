@@ -8,15 +8,22 @@
 </head>
 <body class="bg-stone-50 text-stone-900 font-['Crimson_Pro']">
 
-    <!-- Sobre de Bienvenida (Envelope Overlay) -->
-    <div id="envelope-overlay" class="fixed inset-0 z-[100] bg-[#043431] flex flex-col items-center justify-center transition-transform duration-1000 ease-in-out">
+    <!-- Sobre de Bienvenida (Envelope Realista) -->
+    <div id="envelope-container" class="fixed inset-0 z-[100] flex flex-col justify-center items-center transition-opacity duration-1000">
+        
+        <!-- Cuerpo del sobre -->
+        <div id="envelope-body" class="absolute inset-0 bg-[#022421] transition-transform duration-1000 ease-in-out z-0"></div>
+
+        <!-- Solapa -->
+        <div id="envelope-flap" class="absolute top-0 left-0 w-full h-full bg-[#043431] origin-top transition-transform duration-1000 ease-in-out drop-shadow-2xl z-10" style="clip-path: polygon(0 0, 100% 0, 50% 50%);"></div>
+
         <img 
             id="wedding-seal" 
             src="./images/sello.webp" 
             alt="Sello de Invitación" 
-            class="w-32 md:w-48 cursor-pointer animate-bounce hover:scale-110 transition-transform duration-300"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 md:w-48 cursor-pointer hover:scale-110 transition-all duration-500 ease-in-out rounded-full object-cover z-20"
         />
-        <p class="mt-6 text-white text-3xl font-['Great_Vibes'] tracking-wider">
+        <p id="envelope-text" class="absolute top-[65%] text-white text-3xl font-['Great_Vibes'] tracking-wider z-20 transition-opacity duration-500 pointer-events-none">
             Haz clic para abrir
         </p>
     </div>

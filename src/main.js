@@ -70,21 +70,36 @@ if (form) {
 
 // --- Lógica del Sobre de Bienvenida ---
 const seal = document.getElementById('wedding-seal');
-const envelope = document.getElementById('envelope-overlay');
+const container = document.getElementById('envelope-container');
+const flap = document.getElementById('envelope-flap');
+const body = document.getElementById('envelope-body');
+const text = document.getElementById('envelope-text');
 
-if (seal && envelope) {
+if (seal && container && flap && body) {
     // Bloquear scroll al inicio
     document.body.style.overflow = 'hidden';
 
     seal.addEventListener('click', () => {
-        // Animar el sobre hacia arriba
-        envelope.classList.add('-translate-y-full');
-        // Restaurar el scroll de la página
-        document.body.style.overflow = 'auto';
-        
-        // Quitar el sobre del DOM tras la animación (1 segundo) para que no interfiera
+        // 1. Ocultar el sello y texto
+        seal.style.opacity = '0';
+        seal.style.pointerEvents = 'none';
+        if (text) text.style.opacity = '0';
+
+        // 2. Rotar la solapa hacia arriba (Añadiendo perspectiva para que sea 3D)
+        container.style.perspective = '1000px';
+        flap.style.transform = 'rotateX(180deg)';
+
+        // 3. Deslizar el cuerpo hacia abajo y la solapa hacia arriba un momento después
         setTimeout(() => {
-            envelope.style.display = 'none';
-        }, 1000);
+            // Al estar la solapa ya rotada 180° en el eje X, translateY(100%) lo mueve hacia arriba
+            flap.style.transform = 'rotateX(180deg) translateY(100%)';
+            body.style.transform = 'translateY(100%)';
+        }, 500);
+
+        // 4. Restaurar scroll y ocultar todo tras 1.5s
+        setTimeout(() => {
+            container.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 1500);
     });
 }
