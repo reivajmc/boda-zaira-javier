@@ -67,3 +67,19 @@ if (form) {
             });
     });
 }
+
+// --- Lógica del Sobre de Bienvenida ---
+const seal = document.getElementById('wedding-seal');
+const envelope = document.getElementById('envelope-overlay');
+
+if (seal && envelope) {
+    // Bloquear scroll al inicio
+    document.body.style.overflow = 'hidden';
+
+    seal.addEventListener('click', () => {
+        // Animar el sobre hacia arriba
+        envelope.classList.add('-translate-y-full');
+        // Restaurar el scroll de la página
+        document.body.style.overflow = 'auto';
+    });
+}
