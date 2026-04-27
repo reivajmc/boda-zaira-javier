@@ -2,7 +2,7 @@ import './style.css'
 
 // 1. Definimos la fecha objetivo (Año, Mes [0-11], Día, Hora, Minuto)
 // Nota: Julio es el mes 6 en JavaScript (Enero es 0)
-const weddingDate = new Date(2026, 6, 25, 0, 0, 0).getTime();
+const weddingDate = new Date(2026, 6, 27, 0, 0, 0).getTime();
 
 const updateCountdown = () => {
     const now = new Date().getTime();
