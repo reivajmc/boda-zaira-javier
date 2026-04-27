@@ -81,5 +81,10 @@ if (seal && envelope) {
         envelope.classList.add('-translate-y-full');
         // Restaurar el scroll de la página
         document.body.style.overflow = 'auto';
+        
+        // Quitar el sobre del DOM tras la animación (1 segundo) para que no interfiera
+        setTimeout(() => {
+            envelope.style.display = 'none';
+        }, 1000);
     });
 }
