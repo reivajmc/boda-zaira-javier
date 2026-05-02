@@ -117,6 +117,7 @@ if (form) {
         
         const data = Object.fromEntries(formData.entries());
         data.nombre = guestName || 'Invitado'; // Añadir el nombre oculto
+        data.mensaje = ''; // Añadir el mensaje vacío ya que se quitó del formulario
 
         fetch(scriptURL, { 
             method: 'POST',
