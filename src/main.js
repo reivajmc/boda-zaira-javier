@@ -39,6 +39,20 @@ const btn = document.getElementById('submitBtn');
 const status = document.getElementById('formStatus');
 const reservationMessage = document.getElementById('reservationMessage');
 const selectAsistentes = document.getElementById('asistentes');
+const selectAsistencia = document.getElementById('asistencia');
+
+if (selectAsistencia && selectAsistentes) {
+    selectAsistencia.addEventListener('change', (e) => {
+        if (e.target.value === 'no') {
+            selectAsistentes.disabled = true;
+            selectAsistentes.required = false;
+            selectAsistentes.value = "";
+        } else {
+            selectAsistentes.disabled = false;
+            selectAsistentes.required = true;
+        }
+    });
+}
 
 // Extraer ID de la URL
 const urlParams = new URLSearchParams(window.location.search);
