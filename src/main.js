@@ -97,20 +97,16 @@ if (form) {
         status.classList.add('hidden');
         
         const formData = new FormData(form);
-        const data = {
-            id: guestId || '',
-            nombre: formData.get('nombre'),
-            asistencia: formData.get('asistencia'),
-            personas: formData.get('personas'),
-            mensaje: formData.get('mensaje') || ''
-        };
+        if (guestId) {
+            formData.append('id', guestId);
+        }
         
         fetch(scriptURL, { 
             method: 'POST',
-            body: JSON.stringify(data)
+            body: formData
         })
         .then(response => {
-            status.innerText = "¡Gracias! Tu confirmación ha sido registrada.";
+            status.innerText = "¡Gracias! Tu confirmación ha sido registradaaa.";
             status.classList.remove('hidden', 'text-red-600');
             status.classList.add('text-green-600', 'font-bold');
             form.reset();
