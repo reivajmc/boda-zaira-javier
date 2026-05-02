@@ -2,7 +2,7 @@ import './style.css'
 
 // 1. Definimos la fecha objetivo (Año, Mes [0-11], Día, Hora, Minuto)
 // Nota: Julio es el mes 6 en JavaScript (Enero es 0)
-const weddingDate = new Date(2026, 6, 27, 0, 0, 0).getTime();
+const weddingDate = new Date(2026, 6, 25, 17, 0, 0).getTime();
 
 const updateCountdown = () => {
     const now = new Date().getTime();
@@ -33,11 +33,59 @@ const timerInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // --- Lógica del Formulario RSVP (Google Sheets) ---
-// TODO: ¡Reemplaza esta URL con la que obtengas de Google Apps Script!
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzd9zNRglNBm_eubDmhU2xsJRp650m3FSc4H89TFrXig5ELsL7E3BKDSiMrAV_-zCD2Ww/exec'; 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxYyae-jkDnxXkUbOibkvZOxevbte_HqtpZFHS6i7cFmsjR4SeKtSex5yrSBPpq3vGx/exec'; 
 const form = document.getElementById('rsvpForm');
 const btn = document.getElementById('submitBtn');
 const status = document.getElementById('formStatus');
+const reservationMessage = document.getElementById('reservationMessage');
+const inputNombre = document.getElementById('nombre');
+const selectAsistentes = document.getElementById('asistentes');
+
+// Extraer ID de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const guestId = urlParams.get('id');
+
+const setupGenericForm = () => {
+    selectAsistentes.innerHTML = '<option value="" disabled selected>Número de pases</option>';
+    for (let i = 1; i <= 2; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        selectAsistentes.appendChild(option);
+    }
+};
+
+if (guestId) {
+    // Buscar datos del invitado
+    fetch(`${scriptURL}?id=${guestId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.familia && data.pases) {
+                // Mostrar mensaje elegante
+                reservationMessage.innerHTML = `<p class="text-2xl">Pase reservado para: <br><span class="font-['Great_Vibes'] text-[#C9A06C] text-4xl">${data.familia}</span></p>`;
+                
+                // Llenar nombre
+                inputNombre.value = data.familia;
+                
+                // Generar opciones de pases
+                selectAsistentes.innerHTML = '<option value="" disabled selected>Número de pases</option>';
+                for (let i = 1; i <= data.pases; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i;
+                    selectAsistentes.appendChild(option);
+                }
+            } else {
+                setupGenericForm();
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener datos del invitado:', error);
+            setupGenericForm();
+        });
+} else {
+    setupGenericForm();
+}
 
 if (form) {
     form.addEventListener('submit', e => {
@@ -45,26 +93,38 @@ if (form) {
         
         // Cambiar estado del botón mientras envía
         btn.disabled = true;
-        btn.innerText = 'Enviando...';
+        btn.innerText = 'Enviando confirmación...';
         status.classList.add('hidden');
         
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                status.innerText = "¡Gracias! Tu confirmación ha sido enviada.";
-                status.classList.remove('hidden', 'text-red-600');
-                status.classList.add('text-green-600', 'font-bold');
-                form.reset();
-                btn.disabled = false;
-                btn.innerText = 'Enviar Confirmación';
-            })
-            .catch(error => {
-                status.innerText = "Hubo un error al enviar. Por favor intenta de nuevo.";
-                status.classList.remove('hidden', 'text-green-600');
-                status.classList.add('text-red-600', 'font-bold');
-                console.error('Error!', error.message);
-                btn.disabled = false;
-                btn.innerText = 'Enviar Confirmación';
-            });
+        const formData = new FormData(form);
+        const data = {
+            id: guestId || '',
+            nombre: formData.get('nombre'),
+            asistencia: formData.get('asistencia'),
+            personas: formData.get('personas'),
+            mensaje: formData.get('mensaje') || ''
+        };
+        
+        fetch(scriptURL, { 
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            status.innerText = "¡Gracias! Tu confirmación ha sido registrada.";
+            status.classList.remove('hidden', 'text-red-600');
+            status.classList.add('text-green-600', 'font-bold');
+            form.reset();
+            btn.disabled = false;
+            btn.innerText = 'Enviar Confirmación';
+        })
+        .catch(error => {
+            status.innerText = "Hubo un error al enviar. Por favor intenta de nuevo.";
+            status.classList.remove('hidden', 'text-green-600');
+            status.classList.add('text-red-600', 'font-bold');
+            console.error('Error!', error.message);
+            btn.disabled = false;
+            btn.innerText = 'Enviar Confirmación';
+        });
     });
 }
 

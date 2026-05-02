@@ -114,13 +114,20 @@
         <div class="max-w-md mx-auto bg-white p-8 shadow-lg rounded-xl">
             <h3 class="font-['Great_Vibes'] text-5xl text-center mb-6 text-stone-800">Confirma tu asistencia</h3>
             <p class="text-center text-lg mb-8 font-['Crimson_Pro'] italic">Nos encantaría que nos acompañes en este día tan especial. Por favor, confirma tu asistencia antes del 25 de junio.</p>
+            <div id="reservationMessage" class="text-center mb-4"></div>
             <form id="rsvpForm" class="space-y-4">
-                <input type="text" name="nombre" placeholder="Tu nombre completo" class="w-full border p-3 rounded focus:outline-none focus:ring-1 focus:ring-stone-400" required>
-                <select name="asistencia" class="w-full border p-3 rounded focus:outline-none focus:ring-1 focus:ring-stone-400" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" class="w-full border p-3 rounded focus:outline-none focus:ring-1 focus:ring-stone-400" required>
+                <select name="asistencia" id="asistencia" class="w-full border p-3 rounded focus:outline-none focus:ring-1 focus:ring-stone-400" required>
                     <option value="" disabled selected>¿Asistirás?</option>
                     <option value="si">¡Claro que sí!</option>
                     <option value="no">Lamentablemente no</option>
                 </select>
+                <select name="personas" id="asistentes" class="w-full border p-3 rounded focus:outline-none focus:ring-1 focus:ring-stone-400" required>
+                    <option value="" disabled selected>Número de pases</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                <textarea name="mensaje" id="mensaje" placeholder="Déjanos un mensaje (opcional)" class="w-full border p-3 rounded focus:outline-none focus:ring-1 focus:ring-stone-400" rows="3"></textarea>
                 <button type="submit" id="submitBtn" class="w-full bg-stone-800 text-white py-3 rounded font-bold uppercase tracking-widest hover:bg-stone-700 transition disabled:opacity-50">Enviar Confirmación</button>
                 <p id="formStatus" class="text-center mt-4 hidden text-sm"></p>
             </form>
