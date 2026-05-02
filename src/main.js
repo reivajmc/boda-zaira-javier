@@ -38,12 +38,12 @@ const form = document.getElementById('rsvpForm');
 const btn = document.getElementById('submitBtn');
 const status = document.getElementById('formStatus');
 const reservationMessage = document.getElementById('reservationMessage');
-const inputNombre = document.getElementById('nombre');
 const selectAsistentes = document.getElementById('asistentes');
 
 // Extraer ID de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const guestId = urlParams.get('id');
+let guestName = '';
 
 const setupGenericForm = () => {
     selectAsistentes.innerHTML = '<option value="" disabled selected>Número de pases</option>';
@@ -64,8 +64,8 @@ if (guestId) {
                 // Mostrar mensaje elegante
                 reservationMessage.innerHTML = `<p class="text-2xl">Pase reservado para: <br><span class="font-['Great_Vibes'] text-[#C9A06C] text-4xl">${data.familia}</span></p>`;
                 
-                // Llenar nombre
-                inputNombre.value = data.familia;
+                // Guardar nombre
+                guestName = data.familia;
                 
                 // Generar opciones de pases
                 selectAsistentes.innerHTML = '<option value="" disabled selected>Número de pases</option>';
@@ -101,12 +101,20 @@ if (form) {
             formData.append('id', guestId);
         }
         
+        const data = Object.fromEntries(formData.entries());
+        data.nombre = guestName || 'Invitado'; // Añadir el nombre oculto
+
         fetch(scriptURL, { 
             method: 'POST',
-            body: formData
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify(data)
         })
         .then(response => {
-            status.innerText = "¡Gracias! Tu confirmación ha sido registradaaa.";
+            // Con no-cors la respuesta es opaca, asumimos éxito si no hay error de red
+            status.innerText = "¡Gracias! Tu confirmación ha sido registrada.";
             status.classList.remove('hidden', 'text-red-600');
             status.classList.add('text-green-600', 'font-bold');
             form.reset();
