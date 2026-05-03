@@ -14,11 +14,13 @@
 /* Efecto Scroll Reveal */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(50px) scale(0.95);
+    filter: blur(8px);
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
