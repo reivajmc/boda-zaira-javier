@@ -76,7 +76,7 @@ if (guestId) {
         .then(data => {
             if (data.familia && data.pases) {
                 // Mostrar mensaje elegante
-                reservationMessage.innerHTML = `<p class="text-2xl">Pase reservado para: <br><span class="font-['Great_Vibes'] text-[#C9A06C] text-4xl">${data.familia}</span></p>`;
+                reservationMessage.innerHTML = `<p class="text-2xl">Para: <br><span class="font-['Great_Vibes'] text-[#C9A06C] text-4xl">${data.familia}</span></p>`;
                 
                 // Guardar nombre
                 guestName = data.familia;
