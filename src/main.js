@@ -161,6 +161,33 @@ const flap = document.getElementById('envelope-flap');
 const body = document.getElementById('envelope-body');
 const text = document.getElementById('envelope-text');
 
+const bgMusic = document.getElementById('bg-music');
+const audioControlBtn = document.getElementById('audio-control');
+const iconPlaying = document.getElementById('audio-icon-playing');
+const iconPaused = document.getElementById('audio-icon-paused');
+
+// Función para iniciar el audio con un efecto fade-in gradual
+const fadeInAudio = (audio, duration) => {
+    audio.volume = 0;
+    audio.play().catch(error => console.log("La reproducción automática fue bloqueada:", error));
+    
+    let start = null;
+    
+    const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const currentVol = Math.min(progress / duration, 1);
+        
+        audio.volume = currentVol;
+        
+        if (progress < duration) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    
+    window.requestAnimationFrame(step);
+};
+
 if (seal && container && flap && body) {
     // Bloquear scroll al inicio
     document.body.style.overflow = 'hidden';
@@ -175,6 +202,11 @@ if (seal && container && flap && body) {
         container.style.perspective = '1000px';
         flap.style.transform = 'rotateX(180deg)';
 
+        // Iniciar la reproducción de audio con fade-in (3000ms / 3s)
+        if (bgMusic) {
+            fadeInAudio(bgMusic, 3000);
+        }
+
         // 3. Deslizar el cuerpo hacia abajo y la solapa hacia arriba un momento después
         setTimeout(() => {
             // Al estar la solapa ya rotada 180° en el eje X, translateY(100%) lo mueve hacia arriba
@@ -186,6 +218,26 @@ if (seal && container && flap && body) {
         setTimeout(() => {
             container.style.display = 'none';
             document.body.style.overflow = 'auto';
+            
+            // Mostrar el botón flotante de música
+            if (audioControlBtn) {
+                audioControlBtn.classList.remove('opacity-0', 'pointer-events-none');
+            }
         }, 1500);
+    });
+}
+
+// Lógica para pausar/reproducir música con el botón flotante
+if (audioControlBtn && bgMusic) {
+    audioControlBtn.addEventListener('click', () => {
+        if (bgMusic.paused) {
+            bgMusic.play();
+            iconPlaying.classList.remove('hidden');
+            iconPaused.classList.add('hidden');
+        } else {
+            bgMusic.pause();
+            iconPlaying.classList.add('hidden');
+            iconPaused.classList.remove('hidden');
+        }
     });
 }
