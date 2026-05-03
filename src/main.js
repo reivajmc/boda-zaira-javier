@@ -42,12 +42,18 @@ const selectAsistentes = document.getElementById('asistentes');
 const selectAsistencia = document.getElementById('asistencia');
 
 if (selectAsistencia && selectAsistentes) {
+    // Estado inicial
+    selectAsistentes.disabled = true;
+    selectAsistentes.required = false;
+
     selectAsistencia.addEventListener('change', (e) => {
         if (e.target.value === 'no') {
+            selectAsistentes.classList.add('hidden');
             selectAsistentes.disabled = true;
             selectAsistentes.required = false;
             selectAsistentes.value = "";
         } else {
+            selectAsistentes.classList.remove('hidden');
             selectAsistentes.disabled = false;
             selectAsistentes.required = true;
         }
