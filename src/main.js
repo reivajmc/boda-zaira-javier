@@ -1,4 +1,5 @@
 import './style.css'
+import confetti from 'canvas-confetti'
 
 // 1. Definimos la fecha objetivo (Año, Mes [0-11], Día, Hora, Minuto)
 // Nota: Julio es el mes 6 en JavaScript (Enero es 0)
@@ -223,6 +224,34 @@ if (seal && container && flap && body) {
             if (audioControlBtn) {
                 audioControlBtn.classList.remove('opacity-0', 'pointer-events-none');
             }
+
+            // --- Efecto de Confeti Dorado ---
+            const duration = 3000; // 3 segundos de confeti
+            const end = Date.now() + duration;
+
+            (function frame() {
+                // Lanza confeti desde el borde izquierdo
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.8 },
+                    colors: ['#C9A06C', '#FFFDD0']
+                });
+                // Lanza confeti desde el borde derecho
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.8 },
+                    colors: ['#C9A06C', '#FFFDD0']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
         }, 1500);
     });
 }
@@ -241,3 +270,23 @@ if (audioControlBtn && bgMusic) {
         }
     });
 }
+
+// --- Intersection Observer para Animación de Scroll (Reveal Effect) ---
+const revealOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15 // Se activa cuando el 15% de la sección es visible
+};
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Solo ejecutar una vez por sección
+        }
+    });
+}, revealOptions);
+
+document.querySelectorAll('.reveal').forEach(section => {
+    revealObserver.observe(section);
+});
