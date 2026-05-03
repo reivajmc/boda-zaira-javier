@@ -11,19 +11,38 @@
     <!-- Sobre de Bienvenida (Envelope Realista) -->
     <div id="envelope-container" class="fixed inset-0 z-[100] flex flex-col justify-center items-center transition-opacity duration-1000">
         
-        <!-- Cuerpo del sobre -->
-        <div id="envelope-body" class="absolute inset-0 bg-[#022421] transition-transform duration-1000 ease-in-out z-0"></div>
+        <!-- Cuerpo del sobre (Fondo interior) -->
+        <div id="envelope-body" class="absolute inset-0 transition-transform duration-1000 ease-in-out z-0 bg-[#D1CCC0] shadow-[inset_0_0_50px_rgba(0,0,0,0.1)]">
+            <!-- Solapa Izquierda -->
+            <div class="absolute inset-0 drop-shadow-[3px_0_12px_rgba(0,0,0,0.15)]">
+                <div class="absolute inset-0 bg-[#E8E4D9]" style="clip-path: polygon(0 0, 50% 50%, 0 100%);"></div>
+            </div>
+            
+            <!-- Solapa Derecha -->
+            <div class="absolute inset-0 drop-shadow-[-3px_0_12px_rgba(0,0,0,0.15)]">
+                <div class="absolute inset-0 bg-[#E8E4D9]" style="clip-path: polygon(100% 0, 100% 100%, 50% 50%);"></div>
+            </div>
+            
+            <!-- Solapa Inferior -->
+            <div class="absolute inset-0 drop-shadow-[0_-4px_12px_rgba(0,0,0,0.15)] z-10">
+                <div class="absolute inset-0 bg-[#F2EFE8]" style="clip-path: polygon(0 100%, 50% 50%, 100% 100%);"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" style="clip-path: polygon(0 100%, 50% 50%, 100% 100%);"></div>
+            </div>
+        </div>
 
-        <!-- Solapa -->
-        <div id="envelope-flap" class="absolute top-0 left-0 w-full h-full bg-[#043431] origin-top transition-transform duration-1000 ease-in-out drop-shadow-2xl z-10" style="clip-path: polygon(0 0, 100% 0, 50% 50%);"></div>
+        <!-- Solapa Superior -->
+        <div id="envelope-flap" class="absolute top-0 left-0 w-full h-full origin-top transition-transform duration-1000 ease-in-out z-10 drop-shadow-[0_8px_16px_rgba(0,0,0,0.2)]">
+            <div class="absolute inset-0 bg-[#F9F6EE]" style="clip-path: polygon(0 0, 100% 0, 50% 50%);"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white/60 to-transparent" style="clip-path: polygon(0 0, 100% 0, 50% 50%);"></div>
+        </div>
 
         <img 
             id="wedding-seal" 
             src="./images/sello.webp" 
             alt="Sello de Invitación" 
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 md:w-48 cursor-pointer hover:scale-110 transition-all duration-500 ease-in-out rounded-full object-cover z-20"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 md:w-48 cursor-pointer hover:scale-110 transition-all duration-500 ease-in-out rounded-full object-cover z-20 shadow-[0_0_20px_rgba(0,0,0,0.3)] ring-1 ring-[#c0a87d]/50"
         />
-        <p id="envelope-text" class="absolute top-[65%] text-white text-3xl font-['Great_Vibes'] tracking-wider z-20 transition-opacity duration-500 pointer-events-none">
+        <p id="envelope-text" class="absolute top-[65%] text-stone-700 text-3xl font-['Great_Vibes'] tracking-wider z-20 transition-opacity duration-500 pointer-events-none drop-shadow-sm">
             Haz clic para abrir
         </p>
     </div>
