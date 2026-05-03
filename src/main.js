@@ -40,6 +40,7 @@ const status = document.getElementById('formStatus');
 const reservationMessage = document.getElementById('reservationMessage');
 const selectAsistentes = document.getElementById('asistentes');
 const selectAsistencia = document.getElementById('asistencia');
+const pasesContainer = document.getElementById('pases-container');
 
 if (selectAsistencia && selectAsistentes) {
     // Estado inicial
@@ -48,12 +49,12 @@ if (selectAsistencia && selectAsistentes) {
 
     selectAsistencia.addEventListener('change', (e) => {
         if (e.target.value === 'no') {
-            selectAsistentes.classList.add('hidden');
+            if (pasesContainer) pasesContainer.classList.add('hidden');
             selectAsistentes.disabled = true;
             selectAsistentes.required = false;
             selectAsistentes.value = "";
         } else {
-            selectAsistentes.classList.remove('hidden');
+            if (pasesContainer) pasesContainer.classList.remove('hidden');
             selectAsistentes.disabled = false;
             selectAsistentes.required = true;
         }
@@ -66,7 +67,7 @@ const guestId = urlParams.get('id');
 let guestName = '';
 
 const setupGenericForm = () => {
-    selectAsistentes.innerHTML = '<option value="" disabled selected>Número de pases</option>';
+    selectAsistentes.innerHTML = '<option value="" disabled selected>Selecciona cuántos requieres</option>';
     for (let i = 1; i <= 2; i++) {
         const option = document.createElement('option');
         option.value = i;
@@ -88,7 +89,7 @@ if (guestId) {
                 guestName = data.familia;
                 
                 // Generar opciones de pases
-                selectAsistentes.innerHTML = '<option value="" disabled selected>Número de pases</option>';
+                selectAsistentes.innerHTML = '<option value="" disabled selected>Selecciona cuántos requieres</option>';
                 for (let i = 1; i <= data.pases; i++) {
                     const option = document.createElement('option');
                     option.value = i;
