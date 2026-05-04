@@ -16,8 +16,7 @@
         }
 
         /* Pseudo-elementos para textura y patrones de forma fija */
-        body.bg-texture::before,
-        body.bg-texture::after {
+        body.bg-texture::before {
             content: "";
             position: fixed;
             inset: 0;
@@ -31,15 +30,24 @@
             z-index: -2;
         }
 
-        /* Capa de marca de agua floral (ramas de olivo y monograma J&Z al 5% de opacidad) */
-        body.bg-texture::after {
-            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3E@import url('https://fonts.googleapis.com/css2?family=Great+Vibes'); text { font-family: 'Great Vibes', cursive; font-size: 36px; fill: %23C9A06C; fill-opacity: 0.05; text-anchor: middle; dominant-baseline: middle; } path { fill: none; stroke: %23C9A06C; stroke-width: 0.5; stroke-opacity: 0.05; stroke-linecap: round; stroke-linejoin: round; }%3C/style%3E%3Ctext x='100' y='100'%3EJ %26 Z%3C/text%3E%3Cpath d='M20,60 Q40,40 70,30'/%3E%3Cpath d='M30,50 Q45,35 40,25 Q25,30 30,50'/%3E%3Cpath d='M50,38 Q65,20 60,10 Q45,15 50,38'/%3E%3Cpath d='M180,140 Q160,160 130,170'/%3E%3Cpath d='M170,150 Q155,165 160,175 Q175,170 170,150'/%3E%3Cpath d='M150,162 Q135,180 140,190 Q155,185 150,162'/%3E%3Cpath d='M160,20 Q140,40 130,70'/%3E%3Cpath d='M150,30 Q135,45 125,40 Q130,25 150,30'/%3E%3Cpath d='M138,50 Q120,65 110,60 Q115,45 138,50'/%3E%3Cpath d='M40,180 Q60,160 70,130'/%3E%3Cpath d='M50,170 Q65,155 75,160 Q70,175 50,170'/%3E%3Cpath d='M62,150 Q80,135 90,140 Q85,155 62,150'/%3E%3C/svg%3E");
-            background-size: 150px;
+        /* Capa de fondo floral en contenedor independiente */
+        #background-pattern {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
             z-index: -1;
+            opacity: 0.12;
+            /* DEBUG */
+            outline: 1px solid red;
+            background-image: url("data:image/svg+xml,%3Csvg width='250' height='150' viewBox='0 0 250 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3E@import url('https://fonts.googleapis.com/css2?family=Great+Vibes'); text { font-family: 'Great Vibes', cursive; font-size: 42px; fill: %23C9A06C; dominant-baseline: middle; } path { fill: none; stroke: %23C9A06C; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }%3C/style%3E%3Ctext x='130' y='75'%3EJ %26 Z%3C/text%3E%3Cg transform='translate(10, 20)'%3E%3Cpath d='M10,100 Q40,60 90,20'/%3E%3Cpath d='M25,80 Q20,60 40,55 Q45,75 25,80'/%3E%3Cpath d='M45,60 Q40,40 60,35 Q65,55 45,60'/%3E%3Cpath d='M65,40 Q60,20 80,15 Q85,35 65,40'/%3E%3Cpath d='M50,90 Q70,95 75,75 Q55,70 50,90'/%3E%3Cpath d='M70,70 Q90,75 95,55 Q75,50 70,70'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 250px;
         }
     </style>
 </head>
 <body class="bg-texture text-stone-900 font-['Crimson_Pro']">
+
+    <!-- Capa Independiente de Textura Floral -->
+    <div id="background-pattern"></div>
 
     <!-- Elemento de Audio -->
     <audio id="bg-music" loop>
@@ -95,6 +103,7 @@
             src="./images/sello.webp" 
             alt="Sello de Invitación" 
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 md:w-48 cursor-pointer hover:scale-110 transition-all duration-500 ease-in-out rounded-full object-cover z-20 shadow-[0_0_20px_rgba(0,0,0,0.3)] ring-1 ring-[#c0a87d]/50"
+            style="clip-path: circle(45%); border-radius: 50%;"
         />
         <p id="envelope-text" class="absolute top-[65%] text-stone-700 text-3xl font-['Great_Vibes'] tracking-wider z-20 transition-opacity duration-500 pointer-events-none drop-shadow-sm">
             Haz clic para abrir
