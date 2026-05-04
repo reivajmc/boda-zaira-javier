@@ -226,7 +226,7 @@ if (seal && container && flap && body) {
             }
 
             // --- Efecto de Confeti Dorado ---
-            const duration = 3000; // 3 segundos de confeti
+            const duration = 1500; // 1.5 segundos de confeti
             const end = Date.now() + duration;
 
             (function frame() {
