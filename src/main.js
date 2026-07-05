@@ -82,14 +82,37 @@ if (guestId) {
     fetch(`${scriptURL}?id=${guestId}`)
         .then(response => response.json())
         .then(data => {
-            if (data.familia && data.pases) {
-                // Mostrar mensaje elegante
+            // Condición de control: si pases es 0, bloquear acceso
+            if (data.familia && data.pases !== undefined && parseInt(data.pases) === 0) {
+                const rsvpForm = document.getElementById('rsvpForm');
+                const reservationMessage = document.getElementById('reservationMessage');
+
+                if (rsvpForm) rsvpForm.innerHTML = ''; // Limpiar el formulario
+                if (reservationMessage) reservationMessage.innerHTML = ''; // Limpiar mensaje de bienvenida
+
+                // Inyectar mensaje de acceso no disponible
+                const accessDeniedMessage = `
+                    <div class="text-center">
+                        <p class="text-lg">Agradecemos tu interés, pero el periodo de confirmación o el acceso para este enlace ya no se encuentra disponible.</p>
+                    </div>`;
+
+                // Usamos el contenedor del formulario para el mensaje
+                const container = document.getElementById('rsvp-container') || document.body;
+                container.innerHTML = accessDeniedMessage;
+
+                // Deshabilitar botón por si acaso
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.style.display = 'none';
+                }
+
+            } else if (data.familia && data.pases && parseInt(data.pases) > 0) {
+                // Lógica existente para pases > 0
                 reservationMessage.innerHTML = `<p class="text-2xl">Para: <br><span class="font-['Great_Vibes'] text-[#C9A06C] text-4xl">${data.familia}</span></p>`;
                 
-                // Guardar nombre
                 guestName = data.familia;
                 
-                // Generar opciones de pases
                 selectAsistentes.innerHTML = '<option value="" disabled selected>Selecciona cuántos requieres</option>';
                 for (let i = 1; i <= data.pases; i++) {
                     const option = document.createElement('option');
